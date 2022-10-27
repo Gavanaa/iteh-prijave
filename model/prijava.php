@@ -36,9 +36,9 @@ class Prijava{
         
     }
     
-    public function deleteById(mysqli $conn)
+    public static function deleteById($id,mysqli $conn)
     {
-        $query = "DELETE FROM prijave WHERE id=$this->id";
+        $query = "DELETE FROM prijave WHERE id=$id";
         return $conn->query($query);
     }
 
@@ -52,7 +52,13 @@ class Prijava{
         $q = "UPDATE prijave set predmet ='$this->predmet', katedra='$this->katedra',sala='$this->sala',datum='$this->datum'";
         return $conn->query($q);
     }
+    public static function getLast(mysqli $conn){
+        $q="SELECT * FROM prijave order by id desc limit 1";
+        return $conn->query($q);
+
+    }
 
 }
+
 
 ?>
